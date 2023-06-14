@@ -8,11 +8,11 @@
         <version>3.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>pl.rstrzalkowski</groupId>
-    <artifactId>SyllabusAPI</artifactId>
+    <groupId>pl.mySchool</groupId>
+    <artifactId>mySchoolAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SyllabusAPI</name>
-    <description>SyllabusAPI</description>
+    <name>mySchool</name>
+    <description>mySchool</description>
     <properties>
         <java.version>17</java.version>
     </properties>

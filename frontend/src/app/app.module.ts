@@ -54,6 +54,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ImageUploadComponent} from './components/image-upload/image-upload.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AddUserComponent } from './components/manage-school/users/add-user/add-user.component';
+import { ScheduelComponent } from './components/manage-school/scheduel/scheduel.component';
 
 
 @NgModule({
@@ -103,6 +104,7 @@ import { AddUserComponent } from './components/manage-school/users/add-user/add-
     ImageUploadComponent,
     UserProfileComponent,
     AddUserComponent,
+    ScheduelComponent,
   ],
   imports: [
     BrowserModule,

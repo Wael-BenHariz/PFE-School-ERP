@@ -21,6 +21,7 @@ import {LevelsComponent} from "./components/manage-school/levels/levels.componen
 import {ManagementGuard} from "./guards/management.guard";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
+import {ScheduelComponent} from "./components/manage-school/scheduel/scheduel.component";
 
 const routes: Routes = [
   {
@@ -94,6 +95,14 @@ const routes: Routes = [
       {
         path: "classes",
         component: ClassesComponent,
+        canActivate: [AuthenticationGuard, ManagementGuard],
+        data: {
+          title: "Classes"
+        },
+      },
+      {
+        path: "scheduel",
+        component: ScheduelComponent,
         canActivate: [AuthenticationGuard, ManagementGuard],
         data: {
           title: "Classes"

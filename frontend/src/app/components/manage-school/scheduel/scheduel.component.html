@@ -6,11 +6,12 @@
     </div>
     <p class="mt-5">
       <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Scheduel</span>
-      > Levels</p>
+      <p>Levels</p>
   </div>
 </div>
 <div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
-
+<input type="radio" name="teacherStudent" id="teacher" value="Teacher">
+<input type="radio" name="teacherStudent" id="student" value="Student">
   <form class="bg-skin-base w-full" id="editClassForm" (submit)="submit()">
     <p class="text-3xl mb-1">Send scheduel</p>
     Short name* (max 5 characters)

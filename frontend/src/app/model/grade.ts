@@ -13,4 +13,5 @@ export interface Grade {
   grade: number
   comment: string
   createdAt: Date
+  file_url: string
 }

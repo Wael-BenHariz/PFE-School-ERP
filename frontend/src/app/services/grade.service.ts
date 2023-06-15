@@ -37,4 +37,10 @@ export class GradeService {
       comment: comment
     })
   }
+
+  geturl(file: File) {
+    const formdata: FormData = new FormData();
+    formdata.append('file', file);
+    return this.http.post<string>(`${environment.apiUrl}/firebase/url`, formdata);
+  }
 }

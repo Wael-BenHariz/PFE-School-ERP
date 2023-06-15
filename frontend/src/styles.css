@@ -196,5 +196,8 @@ input[type="checkbox"] ~ .switch {
   background-image: url("https://leverageedu.com/blog/wp-content/uploads/2020/01/physical-education-class-12.jpg");
 }
 
+button[disabled]{
+  opacity: 0.6;
+}
 
 

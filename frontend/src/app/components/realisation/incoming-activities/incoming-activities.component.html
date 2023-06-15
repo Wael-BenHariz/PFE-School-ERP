@@ -18,6 +18,15 @@
             <div class="text-3xl">{{activity.weight}}</div>
           </div>
         </div>
+        <div class="flex justify-between space-x-5">
+          <p>
+            <button (click)="chooseFile()" [disabled]="activity.deposit" style="background: rgb(136, 136, 136);"  class="btn-submit mt-3">Add Work</button>
+            <input type="file" id="fileInput" style="display: none" accept=".pdf" (change)="onFileSelected($event)">
+            File name : {{file_name || "No file added"}}
+          </p>
+        <button [disabled]="activity.deposit " class="btn-submit mt-3">Deposit</button>
+        </div>
+        <br>
         <hr class="bg-skin-base">
       </div>
     </div>

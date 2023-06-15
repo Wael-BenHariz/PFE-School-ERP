@@ -15,4 +15,6 @@ export interface Activity {
   date: Date;
   createdAt: Date;
   updatedAt: Date;
+  file_url: string;
+  deposit: boolean;
 }

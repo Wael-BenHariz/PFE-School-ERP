@@ -35,4 +35,6 @@ public class Activity extends AbstractEntity {
     private boolean edited;
 
     private boolean archived;
+
+    private String file_url;
 }

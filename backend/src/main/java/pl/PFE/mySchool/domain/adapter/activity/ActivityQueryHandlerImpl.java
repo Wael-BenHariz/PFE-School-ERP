@@ -59,6 +59,7 @@ public class ActivityQueryHandlerImpl implements ActivityQueryHandler {
                 gradeOfActivityDTO.setComment(grade.getComment());
                 gradeOfActivityDTO.setCreatedAt(grade.getCreatedAt());
                 gradeOfActivityDTO.setUpdatedAt(grade.getUpdatedAt());
+                gradeOfActivityDTO.setFile_url(grade.getFile_url());
             } catch (GradeNotFoundException ignored) {
             }
         }));

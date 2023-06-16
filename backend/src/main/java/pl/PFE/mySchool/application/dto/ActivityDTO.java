@@ -22,6 +22,7 @@ public class ActivityDTO {
     private Long realisationId;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private String file_url;
 
     public ActivityDTO(Activity activity) {
         this.activityId = activity.getId();
@@ -33,5 +34,6 @@ public class ActivityDTO {
         this.updatedAt = activity.getUpdatedAt();
         this.subjectName = activity.getRealisation().getSubject().getName();
         this.realisationId = activity.getRealisation().getId();
+        this.file_url= activity.getFile_url();
     }
 }

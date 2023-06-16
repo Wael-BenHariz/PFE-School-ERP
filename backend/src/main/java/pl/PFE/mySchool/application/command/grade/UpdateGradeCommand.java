@@ -16,4 +16,6 @@ public class UpdateGradeCommand {
     private Integer value;
 
     private Long gradeId;
+
+    private String file_url;
 }

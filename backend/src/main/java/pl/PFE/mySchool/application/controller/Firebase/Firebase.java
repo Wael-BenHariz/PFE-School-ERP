@@ -19,7 +19,7 @@ public class Firebase {
     private final FirebaseService firebaseService;
 
     @PostMapping("/url")
-    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
+    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN","STUDENT"})
     public ResponseEntity<Map<String, String>> getFileUrl(@RequestBody MultipartFile file) {
         if (!file.isEmpty()) {
             String url = firebaseService.AjouterImage(file);

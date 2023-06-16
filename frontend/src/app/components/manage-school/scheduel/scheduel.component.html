@@ -5,39 +5,51 @@
       <span class="text-xl text-skin-base">Scheduel</span>
     </div>
     <p class="mt-5">
-      <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Scheduel</span>
-      <p>Levels</p>
+      <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Dashboard</span>
+      > Levels</p>
   </div>
 </div>
-<div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
-<input type="radio" name="teacherStudent" id="teacher" value="Teacher">
-<input type="radio" name="teacherStudent" id="student" value="Student">
+
+
+<div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600  space-x-5">
+  <p class="text-3xl mb-1 mt-1 ">Send scheduel</p>
+  <div class="flex ">
+    <button class="py-1 mb-5 mt-1 " id="teacher" (click)="receiver('teacher')">Teacher</button>
+    <button class="py-1 mb-5 mt-1 ml-2" id="student" (click)="receiver('class')">Class</button>
+  </div>
+
   <form class="bg-skin-base w-full" id="editClassForm" (submit)="submit()">
-    <p class="text-3xl mb-1">Send scheduel</p>
-    Short name* (max 5 characters)
-    <input required [(ngModel)]="shortName" type="text" maxlength="5" name="shortName"
+
+    Title
+    <input required [(ngModel)]="title" type="text" name="title"
            class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
-    Full name* (max 40 characters)
-    <input required [(ngModel)]="fullName" type="text" maxlength="40" name="fullName"
+    Description
+    <input required [(ngModel)]="desc" type="text" name="desc"
            class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
-    <div *ngIf="levels$ | async as levels">
-      Level*
-      <select [(ngModel)]="levelId"
-              class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="levelId">
-        <option *ngFor="let level of levels.content" value="{{level.id}}">{{level.value}}</option>
-      </select>
+    Import file
+    <input required [(ngModel)]="file" type="file" name="file"
+           class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
+
+    <div *ngIf="chooseReciever == 'teacher'">
+      <div *ngIf="teachers$ | async as teachers">
+        Teachers
+        <select
+                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
+
+          <option *ngFor="let teacher of teachers"
+                  value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
+        </select>
+      </div>
     </div>
-    <div *ngIf="teachers$ | async as teachers">
-      Supervising teacher*
-      <select [(ngModel)]="teacherId"
-              class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
-        <option
-          value="{{teacherId}}">{{class?.supervisingTeacher?.firstName}} {{class?.supervisingTeacher?.lastName}}</option>
-        <option *ngFor="let teacher of teachers"
-                value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
-      </select>
+    <div *ngIf="chooseReciever == 'class'">
+      <div *ngIf="classes$ | async as classes">
+              Classes
+        <select
+                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
+          <option *ngFor="let classe of classes.content"
+                  value="{{classe.id}}">{{classe.name}}</option>
+        </select>
+      </div>
     </div>
   </form>
-
-
 </div>

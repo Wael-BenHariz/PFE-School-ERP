@@ -60,7 +60,9 @@ export class UserService {
   getActiveTeachers(page: number | undefined) {
     return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers?size=10&page=${page}&sort=lastName,firstName`)
   }
-
+  getAllTeachers(){
+    return this.http.get<User[]>(`${environment.apiUrl}/users/AllTeachers`)
+  }
   getActiveOffices(page: number | undefined) {
     return this.http.get<UserPage>(`${environment.apiUrl}/users/offices?size=10&page=${page}&sort=lastName,firstName`)
   }

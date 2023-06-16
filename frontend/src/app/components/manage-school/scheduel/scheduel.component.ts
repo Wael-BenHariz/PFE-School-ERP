@@ -1,44 +1,54 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component } from '@angular/core';
 import {Observable} from "rxjs";
-import {LevelPage} from "../../../model/level";
 import {User} from "../../../model/user";
 import {AlertService} from "../../../services/alert.service";
-import {LevelService} from "../../../services/level.service";
 import {UserService} from "../../../services/user.service";
-import {Class} from "../../../model/class";
+import {Class, ClassPage} from "../../../model/class";
+import {ClassService} from "../../../services/class.service";
+import {ScheduelService} from "../../../services/scheduel.service";
 
 @Component({
   selector: 'app-scheduel',
   templateUrl: './scheduel.component.html'
 })
-export class ScheduelComponent implements OnInit {
+export class ScheduelComponent{
   //Data
-  shortName: string = ""
-  fullName: string = ""
-  levelId: number | undefined
-  teacherId: number | undefined
-  levels$: Observable<LevelPage> = this.levelService.getAllActiveLevels()
-  teachers$: Observable<User[]> = this.userService.getAllNotSupervisingActiveTeachers()
-  //end data
+  chooseReciever ='teacher'
+  title: string = ""
+  desc: string = ""
+  file: string = ""
+  teacher : User[] = []
+  class: Class[] = []
+  classes$: Observable<ClassPage>  = this.classService.getAllActiveClasses()
+  teachers$: Observable<User[]> = this.userService.getAllTeachers()
 
-  @Input() class: Class | undefined
-
-  constructor(private levelService: LevelService,
+  constructor(private classService: ClassService,
               private userService: UserService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private scheduelService: ScheduelService,
+              ) {
   }
 
-  ngOnInit(): void {
-    this.shortName = this.class?.name || ""
-    this.fullName = this.class?.fullName || ""
-    this.teacherId = this.class?.supervisingTeacher.id
-    this.levelId = this.class?.level.id
+
+
+  receiver(input:string){
+    this.chooseReciever = input;
   }
 
   submit() {
-    if (this.shortName === '' || this.fullName === '' || this.levelId === undefined || this.teacherId === undefined) {
-      this.alertService.showAlert('warning', 'Fill all the required fields.')
-      return
+    if (this.chooseReciever == 'teacher') {
+      if (this.title === '' || this.desc === '' || this.file === '' ) {
+        this.alertService.showAlert('warning', 'Fill all the required fields.')
+      } else{
+        this.scheduelService.createScheduleTeacher(this.title, this.desc, this.file, this.teacher )
+      }
+    }
+    else if (this.chooseReciever == 'class') {
+      if (this.title === '' || this.desc === '' || this.file === '' ) {
+        this.alertService.showAlert('warning', 'Fill all the required fields.')
+      } else {
+        this.scheduelService.createScheduleClasse(this.title, this.desc, this.file,this.class )
+      }
     }
   }
 }

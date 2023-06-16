@@ -19,6 +19,7 @@ export class LevelService {
     return this.http.get<LevelPage>(`${environment.apiUrl}/levels?sort=value`)
   }
 
+
   getArchivedLevels(page: number | undefined) {
     return this.http.get<LevelPage>(`${environment.apiUrl}/levels/archived?page=${page}&size=6&sort=value`)
   }

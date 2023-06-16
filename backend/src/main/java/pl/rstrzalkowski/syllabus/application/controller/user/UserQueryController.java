@@ -11,25 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.rstrzalkowski.syllabus.application.dto.TokenDTO;
 import pl.rstrzalkowski.syllabus.application.handler.user.UserQueryHandler;
-import pl.rstrzalkowski.syllabus.application.query.user.GetActiveDirectorsQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetActiveOfficesQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetActiveStudentsQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetActiveTeachersQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetActiveUsersQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedDirectorsQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedOfficesQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedStudentsQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedTeachersQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetArchivedUsersQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetDirectorTokensQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetLoggedInUserQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetNotSupervisingActiveTeachersQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetOfficeTokensQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetStudentTokensQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetTeacherTokensQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetUnassignedStudentsQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetUserByIdQuery;
-import pl.rstrzalkowski.syllabus.application.query.user.GetUserByKeywordQuery;
+import pl.rstrzalkowski.syllabus.application.query.user.*;
 import pl.rstrzalkowski.syllabus.domain.model.User;
 
 import java.util.List;
@@ -82,6 +64,11 @@ public class UserQueryController {
     @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
     public Page<User> getAllActiveTeachers(Pageable pageable) {
         return userQueryHandler.handle(new GetActiveTeachersQuery(pageable));
+    }
+    @GetMapping("/AllTeachers")
+    @Secured({"OFFICE", "DIRECTOR", "ADMIN"})
+    public List<User> getAllTeachers(Pageable pageable) {
+        return userQueryHandler.handle(new GetAllTeachersQuery(pageable));
     }
 
     @GetMapping("/teachers/free")

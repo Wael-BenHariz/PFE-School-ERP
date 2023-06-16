@@ -105,8 +105,13 @@ export class ActivitiesComponent implements OnInit {
     this.activitiesLoading = true
     this.activitiesSubscription = this.activityService.getRealisationActivities(realisationId, this.pageNumber).subscribe((result) => {
       this.activities = result
+      console.log(result)
       this.activitiesLoading = false
     })
+  }
+
+  openlink(link:string){
+    window.open(link,'_blank')
   }
 
   refreshActivities() {

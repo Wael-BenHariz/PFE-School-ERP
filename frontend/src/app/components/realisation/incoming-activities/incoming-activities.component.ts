@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivityPage} from "../../../model/activity";
+import { AuthService } from 'src/app/services/auth.service';
+import { GradeService } from 'src/app/services/grade.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-incoming-activities',
@@ -7,16 +10,21 @@ import {ActivityPage} from "../../../model/activity";
 })
 export class IncomingActivitiesComponent implements OnInit {
 
-  @Input() realisationId: number | undefined;
+  @Input() realisationId: number | undefined
   @Input() activityPage: ActivityPage | undefined
 
-  @Output() nextPage: EventEmitter<any> = new EventEmitter();
-  @Output() previousPage: EventEmitter<any> = new EventEmitter();
+  @Output() nextPage: EventEmitter<any> = new EventEmitter()
+  @Output() previousPage: EventEmitter<any> = new EventEmitter()
 
   file:any;
-  file_name:string | undefined;
+  file_name:string | undefined
+  file_url:string  | undefined
+  activityid: number | undefined
+  activityname: string | undefined
+  activitydate: Date | undefined
+  addworks:boolean=false;
 
-  constructor() {
+  constructor(private alertService: AlertService,public authService: AuthService,private gradeservice: GradeService) {
   }
 
   ngOnInit(): void {
@@ -29,32 +37,34 @@ export class IncomingActivitiesComponent implements OnInit {
   next() {
     this.nextPage.emit()
   }
+  openlink(link:string){
+    window.open(link,'_blank')
+  }
+  
 
-  chooseFile() {
-        document.getElementById('fileInput')?.click();
-      }
-    
-      onFileSelected(event: any | null) {
-        if (event.target.files[0]) {
-          this.file=event.target.files[0]
-          this.file_name=this.file.name
-        console.log(this.file_name)
-          // Process the selected file as needed
-        }
+      addwork(activityId:number,activityname:string,activitydate:Date):void{
+        this.activityid=activityId
+        this.activitydate=activitydate
+        this.activityname=activityname
+        this.addworks=true
       }
 
-      openPDF():void{
-        if(this.file){
-          window.open(URL.createObjectURL(this.file))
-        }
+      depsit_done():void{
+        
       }
-      downloadPdf(): void {
-        if (this.file) {
-          const fileUrl = URL.createObjectURL(this.file)
-          const link = document.createElement('a')
-          link.href = fileUrl
-          link.download = this.file.name
-          link.click()
+
+      submit(){
+        if(this.file === null){
+          this.alertService.showAlert('warning', 'No file added.')
+      return
         }
+        this.gradeservice.geturl(this.file).subscribe(
+          (result: any) => {
+            this.file_url=result.url
+          },
+          (error) => {
+            console.error(error) 
+          }
+        );
       }
 }

@@ -23,7 +23,7 @@ public class FirebaseService {
     public String uploadFile(File file, String fileName) throws IOException {
         BlobId blobId = BlobId.of("school-6ebdc.appspot.com", fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
-        Credentials credentials = GoogleCredentials.fromStream(Files.newInputStream(Paths.get("School.json")));
+        Credentials credentials = GoogleCredentials.fromStream(Files.newInputStream(Paths.get("school.json")));
         com.google.cloud.storage.Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
         return String.format("https://firebasestorage.googleapis.com/v0/b/school-6ebdc.appspot.com/o/%s?alt=media", URLEncoder.encode(fileName, String.valueOf(StandardCharsets.UTF_8)));

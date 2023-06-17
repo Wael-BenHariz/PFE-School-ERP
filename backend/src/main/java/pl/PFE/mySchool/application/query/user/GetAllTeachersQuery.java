@@ -1,4 +1,4 @@
-package pl.rstrzalkowski.syllabus.application.query.user;
+package pl.PFE.mySchool.application.query.user;
 
 import org.springframework.data.domain.Pageable;
 

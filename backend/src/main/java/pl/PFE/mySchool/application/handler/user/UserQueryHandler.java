@@ -1,27 +1,9 @@
 package pl.PFE.mySchool.application.handler.user;
 
 import org.springframework.data.domain.Page;
+import pl.PFE.mySchool.application.query.user.*;
 import pl.PFE.mySchool.domain.model.User;
 import pl.PFE.mySchool.application.dto.TokenDTO;
-import pl.PFE.mySchool.application.query.user.GetActiveDirectorsQuery;
-import pl.PFE.mySchool.application.query.user.GetActiveOfficesQuery;
-import pl.PFE.mySchool.application.query.user.GetActiveStudentsQuery;
-import pl.PFE.mySchool.application.query.user.GetActiveTeachersQuery;
-import pl.PFE.mySchool.application.query.user.GetActiveUsersQuery;
-import pl.PFE.mySchool.application.query.user.GetArchivedDirectorsQuery;
-import pl.PFE.mySchool.application.query.user.GetArchivedOfficesQuery;
-import pl.PFE.mySchool.application.query.user.GetArchivedStudentsQuery;
-import pl.PFE.mySchool.application.query.user.GetArchivedTeachersQuery;
-import pl.PFE.mySchool.application.query.user.GetArchivedUsersQuery;
-import pl.PFE.mySchool.application.query.user.GetDirectorTokensQuery;
-import pl.PFE.mySchool.application.query.user.GetLoggedInUserQuery;
-import pl.PFE.mySchool.application.query.user.GetNotSupervisingActiveTeachersQuery;
-import pl.PFE.mySchool.application.query.user.GetOfficeTokensQuery;
-import pl.PFE.mySchool.application.query.user.GetStudentTokensQuery;
-import pl.PFE.mySchool.application.query.user.GetTeacherTokensQuery;
-import pl.PFE.mySchool.application.query.user.GetUnassignedStudentsQuery;
-import pl.PFE.mySchool.application.query.user.GetUserByIdQuery;
-import pl.PFE.mySchool.application.query.user.GetUserByKeywordQuery;
 
 import java.util.List;
 
@@ -38,6 +20,8 @@ public interface UserQueryHandler {
     Page<User> handle(GetActiveStudentsQuery query);
 
     Page<User> handle(GetActiveTeachersQuery query);
+
+    List<User>  handle(GetAllTeachersQuery query);
 
     Page<User> handle(GetActiveOfficesQuery query);
 

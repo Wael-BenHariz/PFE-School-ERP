@@ -81,6 +81,6 @@ export class AuthService {
   }
 
   canArchive() {
-    return this.getRole() == 'DIRECTOR' || this.getRole() == 'ADMIN'
+    return this.getRole() == 'ADMIN'
   }
 }

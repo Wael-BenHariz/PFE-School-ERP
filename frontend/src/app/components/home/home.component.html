@@ -69,6 +69,8 @@
               </div>
             </span>
           </li>
+
+
           <section class="transition duration-300 border-teal-700 border-l-2 rounded-l-md pl-2"
                    [ngClass]="subjectsHidden? 'hidden': ''">
             <li *ngFor="let subject of subjects" class="my-px">
@@ -87,10 +89,27 @@
             </li>
           </section>
           <app-manage-school-sidebar
-            *ngIf="authService.getRole() == 'OFFICE' || authService.getRole() == 'DIRECTOR' || authService.getRole() == 'ADMIN'"
+            *ngIf="authService.getRole() == 'ADMIN'"
             (hideSidebar)="hideSidebarIfOverlapping()">
 
           </app-manage-school-sidebar>
+
+          <li class="my-px">
+            <a *ngIf="authService.getRole() == 'STUDENT'"
+              (click)="hideSidebarIfOverlapping()"
+              routerLink="/document"
+              routerLinkActive="bg-skin-muted"
+              [routerLinkActiveOptions]="{exact: true}"
+              class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
+            >
+                <span class="flex items-center justify-center text-lg text-skin-base">
+                  <img src="https://freesvg.org/img/text70.png " class="object-scale-down h-8 w-6"/>
+                </span>
+              <span class="ml-3 ">Documents</span>
+            </a>
+          </li>
+
+
           <li class="my-px mt-3">
             <span class="flex font-medium text-sm text-skin-base px-4 mb-2 uppercase">Account</span>
           </li>
@@ -115,7 +134,7 @@
                     <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                   </svg>
                 </span>
-              <span class="ml-3">Profile</span>
+              <span class="ml-3 ">Profile</span>
             </a>
           </li>
           <li class="my-px">

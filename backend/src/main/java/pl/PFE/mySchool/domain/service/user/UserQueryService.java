@@ -85,6 +85,13 @@ public class UserQueryService {
         List<SchoolClass> classes = schoolClassRepository.findAllByArchived(false);
         return teachers.stream().filter(teacher -> classes.stream().noneMatch(schoolClass -> Objects.equals(schoolClass.getSupervisingTeacher().getId(), teacher.getId()))).collect(Collectors.toList());
     }
+    public List<User> getAllTeachers(Pageable pageable) {
+        Page<User> teachers = getAllActiveTeachers(pageable);
+        return teachers.getContent();
+    }
+
+
+
 
     public Page<TokenDTO> getTokensByRole(Role role, Pageable pageable) {
         return tokenRepository.findByRole(role, pageable).map(TokenDTO::new);

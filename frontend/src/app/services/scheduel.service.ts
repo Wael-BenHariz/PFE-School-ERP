@@ -13,27 +13,32 @@ export class ScheduelService {
   constructor(private http: HttpClient) {
   }
   createScheduleTeacher(title: string | undefined,
-                    desc: string | undefined,
+                        description: string | undefined,
                     file: string | undefined,
-                    teacher: User[] ,
+                        teacher_id: number | undefined
   ) {
     return this.http.post(`${environment.apiUrl}/realisations`, {
       title: title,
-      desc: desc,
+      description: description,
       file: file,
-      teacher: teacher
+      teacher_id: teacher_id
     }, {observe: "response"})
   }
   createScheduleClasse(title: string | undefined,
-                    desc: string | undefined,
+                       description: string | undefined,
                     file: string | undefined,
-                    classe: Class[]
+                       class_id: number | undefined
   ) {
     return this.http.post(`${environment.apiUrl}/realisations`, {
       title: title,
-      desc: desc,
+      description: description,
       file: file,
-      classe: classe,
+      class_id: class_id,
     }, {observe: "response"})
+  }
+  geturl(file: File) {
+    const formdata: FormData = new FormData();
+    formdata.append('file', file);
+    return this.http.post<string>(`${environment.apiUrl}/firebase/url`, formdata);
   }
 }

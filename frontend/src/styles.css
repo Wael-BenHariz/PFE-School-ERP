@@ -292,7 +292,11 @@ body {
   margin: auto;
   padding: 20px;
 }
-
+.file-upload-image-scheduel{
+  max-height: 100px;
+  max-width: 100px;
+  padding: 10px 0 10px 50px;
+}
 .remove-image {
   width: auto;
   margin: 0;

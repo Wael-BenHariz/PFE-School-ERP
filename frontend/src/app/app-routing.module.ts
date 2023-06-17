@@ -22,6 +22,7 @@ import {ManagementGuard} from "./guards/management.guard";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 import {ScheduelComponent} from "./components/manage-school/scheduel/scheduel.component";
+import {DocumentComponent} from "./components/manage-school/document/document.component";
 
 const routes: Routes = [
   {
@@ -105,7 +106,15 @@ const routes: Routes = [
         component: ScheduelComponent,
         canActivate: [AuthenticationGuard, ManagementGuard],
         data: {
-          title: "Classes"
+          title: "Scheduel"
+        },
+      },
+      {
+        path: "document",
+        component: DocumentComponent,
+        canActivate: [AuthenticationGuard, ManagementGuard],
+        data: {
+          title: "Document"
         },
       },
       {

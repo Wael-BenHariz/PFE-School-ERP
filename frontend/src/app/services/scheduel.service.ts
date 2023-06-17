@@ -15,7 +15,7 @@ export class ScheduelService {
   createScheduleTeacher(title: string | undefined,
                     desc: string | undefined,
                     file: string | undefined,
-                    teacher: User[] ,
+                    teacher: number | undefined
   ) {
     return this.http.post(`${environment.apiUrl}/realisations`, {
       title: title,
@@ -27,7 +27,7 @@ export class ScheduelService {
   createScheduleClasse(title: string | undefined,
                     desc: string | undefined,
                     file: string | undefined,
-                    classe: Class[]
+                    classe: number | undefined
   ) {
     return this.http.post(`${environment.apiUrl}/realisations`, {
       title: title,
@@ -35,5 +35,10 @@ export class ScheduelService {
       file: file,
       classe: classe,
     }, {observe: "response"})
+  }
+  geturl(file: File) {
+    const formdata: FormData = new FormData();
+    formdata.append('file', file);
+    return this.http.post<string>(`${environment.apiUrl}/firebase/url`, formdata);
   }
 }

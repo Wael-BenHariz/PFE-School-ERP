@@ -27,13 +27,21 @@
     <input required [(ngModel)]="desc" type="text" name="desc"
            class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
     Import file
-    <input required [(ngModel)]="file" type="file" name="file"
-           class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
+
+
+    <button type="button" (click)="chooseFile()" style="background: rgb(136, 136, 136);"  class="btn-submit mt-3 block py-1 mb-5 mt-1 w-full lg:w-1/4">Add Work</button>
+    <input  type="file" id="fileInput" style="display: none" accept=".doc, .docx" (change)="onFileSelected($event)">
+
+    <div *ngIf="file" >
+      <img class="file-upload-image-scheduel" src="assets/wordicon.png" alt="your image" />
+      {{file.name}}
+
+    </div>
 
     <div *ngIf="chooseReciever == 'teacher'">
       <div *ngIf="teachers$ | async as teachers">
         Teachers
-        <select
+        <select [(ngModel)]="teacher"
                 class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
 
           <option *ngFor="let teacher of teachers"
@@ -44,7 +52,7 @@
     <div *ngIf="chooseReciever == 'class'">
       <div *ngIf="classes$ | async as classes">
               Classes
-        <select
+        <select [(ngModel)]="classe"
                 class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
           <option *ngFor="let classe of classes.content"
                   value="{{classe.id}}">{{classe.name}}</option>

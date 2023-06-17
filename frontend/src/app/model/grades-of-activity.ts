@@ -8,4 +8,5 @@ export interface GradesOfActivity {
   comment?: any;
   createdAt?: Date;
   updatedAt?: Date;
+  file_url?:string;
 }

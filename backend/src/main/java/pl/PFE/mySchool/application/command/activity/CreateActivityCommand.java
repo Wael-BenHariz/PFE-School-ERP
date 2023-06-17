@@ -31,4 +31,7 @@ public class CreateActivityCommand {
 
     @NotNull
     private Long realisationId;
+
+    @NotNull
+    private String file_url;
 }

@@ -35,6 +35,9 @@
             Weight
           </th>
           <th class="px-6 py-3 text-center">
+            Work
+          </th>
+          <th class="px-6 py-3 text-center">
             Action
           </th>
         </tr>
@@ -46,6 +49,10 @@
           </td>
           <td class="px-6 py-4 text-xl text-center">
             {{activity.weight}}
+          </td>
+          <td class="px-6 py-4 text-xl text-center">
+              <img *ngIf="activity.file_url" style="margin-left: 125px ;" class="h-12 w-12 border-none object-cover imgh" src="assets/fileimage.png" (click)="openlink(activity.file_url)">
+            <span *ngIf="!activity.file_url">No work</span>
           </td>
           <td class="px-6 py-4 text-center flex justify-center space-x-3">
             <button class="btn-submit" (click)="showStudentList(activity)">Grade</button>

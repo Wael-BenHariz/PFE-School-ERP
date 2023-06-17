@@ -31,6 +31,7 @@ export class GradeStudentsComponent implements OnInit {
   studentFirstName: string | undefined
   studentLastName: string | undefined
   studentPersonalId: string | undefined
+  file_url: string | undefined
 
   //end edit grade
 
@@ -53,9 +54,15 @@ export class GradeStudentsComponent implements OnInit {
     })
   }
 
+  openlink(link:string){
+    window.open(link,'_blank')
+  }
+
   getGrades() {
     this.subscription = this.gradeService.getGradesOfActivity(this.activity?.activityId).subscribe((result) => {
       this.grades = result
+     console.log(result)
+      console.log(this.grades[0].file_url)
       this.loading = false
     })
   }
@@ -67,7 +74,7 @@ export class GradeStudentsComponent implements OnInit {
       if (this.onlyUngraded) {
         conditionUngraded = grade.grade === null
       }
-      conditionFilter = grade.studentFirstName.includes(this.filter) || grade.studentLastName.includes(this.filter) || grade.studentPersonalId.includes(this.filter);
+      conditionFilter = grade.studentFirstName.includes(this.filter) || grade.studentLastName.includes(this.filter) || grade.studentPersonalId.includes(this.filter) ;
       return conditionFilter && conditionUngraded
     })
   }
@@ -83,6 +90,7 @@ export class GradeStudentsComponent implements OnInit {
     this.studentFirstName = grade.studentFirstName
     this.studentLastName = grade.studentLastName
     this.studentPersonalId = grade.studentPersonalId
+    this.file_url=grade.file_url
     this.editModalOpened = true
   }
 
@@ -93,11 +101,12 @@ export class GradeStudentsComponent implements OnInit {
     this.studentFirstName = undefined
     this.studentLastName = undefined
     this.studentPersonalId = undefined
+    this.file_url=undefined
     this.editModalOpened = false
   }
 
   submit() {
-    this.gradeService.updateGrade(this.activity?.activityId, this.studentId, this.currentGrade, this.currentComment).subscribe((result) => {
+    this.gradeService.updateGrade(this.activity?.activityId, this.studentId, this.currentGrade, this.currentComment,"").subscribe((result) => {
       this.alertService.showAlert("success", "Grade has been updated!")
       this.loading = true
       this.getGrades()

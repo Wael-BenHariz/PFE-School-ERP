@@ -30,6 +30,8 @@ public class GradeOfActivityDTO {
 
     private Timestamp updatedAt;
 
+    private String file_url;
+
     public GradeOfActivityDTO(User student, Long activityId) {
         this.studentId = student.getId();
         this.studentFirstName = student.getFirstName();

@@ -28,8 +28,11 @@
                 Date*
                 <input required [(ngModel)]="date" type="date" name="date"
                        class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
+                       <div class="text-left">* file is required</div>
+                <button type="button" (click)="chooseFile()" style="background: rgb(136, 136, 136);"  class="btn-submit mt-3 block py-1 mb-5 mt-1 w-full lg:w-1/4">Add Work</button>
+                <input  type="file" id="fileInput" style="display: none" accept=".doc, .docx" (change)="onFileSelected($event)">
               </form>
-              <div class="text-left">* field is required</div>
+              <span *ngIf="file_name">File name : {{file_name }}</span> 
             </div>
           </div>
         </div>

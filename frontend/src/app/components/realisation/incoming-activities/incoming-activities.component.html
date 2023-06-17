@@ -3,6 +3,7 @@
     <div class="w-full text-xl text-skin-base">
       <div class="flex justify-between space-x-5">
         <span class="text-lg underline underline-offset-8">Incoming activities:</span>
+        <span class="text-lg underline underline-offset-8">Work:</span>
         <span *ngIf="activityPage?.totalPages !== 0">Weight</span>
       </div>
       <p *ngIf="activityPage?.totalPages === 0" class="text-base mt-5">There are no incoming activities. Take a
@@ -15,9 +16,18 @@
               <span class="text-base">{{activity.date | date}}</span>
               <div class="mt-6 text-base text-skin-base">{{activity.description}}</div>
             </div>
-            <div class="text-3xl">{{activity.weight}}</div>
+            <div class="text-3xl">
+            <img *ngIf="activity.file_url"  class="h-12 w-12 border-none object-cover imgh" src="assets/fileimage.png" (click)="openlink(activity.file_url)">
+            <span *ngIf="!activity.file_url">No work</span></div>
+
+            <div class="text-3xl">{{activity.weight}}
+            </div>
           </div>
         </div>
+        <div *ngIf="authService.getRole() == 'STUDENT' " >
+            <button type="button" (click)="addwork(activity.activityId,activity.name,activity.date)" [disabled]="activity.deposit" style="background: rgb(136, 136, 136); width:100%"  class="btn-submit mt-3">Add Work</button>
+        </div>
+        <br>
         <hr class="bg-skin-base">
       </div>
     </div>
@@ -29,6 +39,19 @@
           class="mt-5 p-3 cursor-pointer font-bold truncate text-teal-600">Next page</span>
   </div>
 </div>
+
+<ng-container
+    *ngIf="authService.getRole() === 'STUDENT' ">
+    
+    <app-add-depot (success)="depsit_done()"
+                         *ngIf="addworks"
+                         (close)="addworks = false"
+                         [activityid]="activityid"
+                         [activityname]="activityname"
+                         [activitydate]="activitydate"
+                         >
+    </app-add-depot>
+  </ng-container>
 
 
 

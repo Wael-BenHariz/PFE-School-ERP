@@ -37,6 +37,9 @@
               Comment
             </th>
             <th class="px-6 py-3 text-center">
+              Work
+            </th>
+            <th class="px-6 py-3 text-center">
               Action
             </th>
           </tr>
@@ -50,10 +53,14 @@
               </div>
             </td>
             <td class="px-6 py-4 text-xl text-center">
-              {{grade?.grade}}
+              {{grade?.grade || "-"}}
             </td>
             <td class="px-6 py-4 text-xl text-center">
-              {{grade?.comment}}
+              {{grade?.comment ||"-"}}
+            </td>
+            <td class="px-6 py-4 text-xl text-center">
+              <img *ngIf="grade.file_url"  class="h-12 w-12 border-none object-cover imgh" src="assets/wordicon.png" (click)="openlink(grade.file_url)">
+              <span *ngIf="!grade?.file_url">-</span>
             </td>
             <td class="px-6 py-4 text-xl text-center">
               <div class="w-full flex justify-center">

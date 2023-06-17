@@ -14,6 +14,8 @@ import java.util.Optional;
 public interface GradeRepository extends JpaRepository<Grade, Long> {
     Page<Grade> findAllByArchivedAndStudentId(boolean archived, Long studentId, Pageable pageable);
 
+    Grade findByStudentIdAndActivityId(Long studentId,Long activityId);
+
     Optional<Grade> findByActivityIdAndStudentId(Long activityId, Long studentId);
 
     List<Grade> findAllByArchivedAndActivityArchivedAndActivityRealisationIdAndStudent(boolean archived, boolean activityArchived, Long realisationId, User student);

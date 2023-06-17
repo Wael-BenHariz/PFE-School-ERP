@@ -43,6 +43,9 @@
           <th class="px-6 py-3">
             Date
           </th>
+          <th class="px-6 py-3">
+            Work
+          </th>
         </tr>
         </thead>
         <tbody>
@@ -57,10 +60,14 @@
             {{grade.grade || "Not graded"}}
           </td>
           <td class="px-6 py-4">
-            {{grade.comment}}
+            {{grade.comment || "-"}}
           </td>
           <td class="px-6 py-4">
             {{(grade.createdAt | date: "short") || "Not graded"}}
+          </td>
+          <td class="px-6 py-4">
+            <a *ngIf="grade.file_url" href="{{grade.file_url}}" target="_blank"><img class="h-12 w-12 border-none object-cover" src="assets/download.png"></a>
+            <span *ngIf="!grade.file_url">No work</span>
           </td>
         </tr>
         </tbody>

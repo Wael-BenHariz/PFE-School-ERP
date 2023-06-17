@@ -13,9 +13,11 @@
 
 <div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600  space-x-5">
   <p class="text-3xl mb-1 mt-1 ">Send scheduel</p>
-  <div class="flex ">
-    <button class="py-1 mb-5 mt-1 " id="teacher" (click)="receiver('teacher')">Teacher</button>
-    <button class="py-1 mb-5 mt-1 ml-2" id="student" (click)="receiver('class')">Class</button>
+  <div class="flex justify-around w-full">
+    <button [ngClass]=" chooseReciever == 'teacher'? 'bg-skin-sidebar' : 'bg-skin-base'" class="py-1 mb-5 mt-1 cursor-pointer w-full justify-center rounded-md border border-transparent px-24 py-2  font-medium shadow-sm focus:outline-none sm:ml-3 sm:w-auto sm:text-sm "
+            id="teacher" (click)="receiver('teacher')">Teacher</button>
+    <button [ngClass]=" chooseReciever == 'class'? 'bg-skin-sidebar' : 'bg-skin-base'" class="py-1 mb-5 mt-1 cursor-pointer w-full justify-center rounded-md border border-transparent px-24 py-2  font-medium shadow-sm focus:outline-none sm:ml-3 sm:w-auto sm:text-sm "
+            id="student" (click)="receiver('class')">Class</button>
   </div>
 
   <form class="bg-skin-base w-full" id="addScheduelForm" (submit)="submit()">
@@ -25,7 +27,7 @@
            class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
     Description
     <textarea required [(ngModel)]="desc" name="content" maxlength="2000"
-              class="block py-1  px-11 mb-5 mt-1 bg-skin-muted w-full h-60 resize-y">
+              class="block py-1  h-24 px-11 mb-5 mt-1 bg-skin-muted w-full h-60 resize-y">
                 </textarea>
     Import file
 
@@ -55,7 +57,7 @@
       <div *ngIf="classes$ | async as classes">
         Classes
         <select [(ngModel)]="classe"
-                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
+                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="classeId">
           <option *ngFor="let classe of classes.content"
                   value="{{classe.id}}">{{classe.name}}</option>
         </select>

@@ -29,6 +29,8 @@ public class Post extends AbstractEntity {
     @Column(length = 2000)
     private String content;
 
+    private String file_url;
+
     private boolean edited;
 
     private boolean archived;

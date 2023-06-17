@@ -1,0 +1,33 @@
+<div>
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
+    <div class="">
+      <div class="flex items-center">
+        <span class="text-xl text-skin-base">Documents</span>
+      </div>
+      <p class="mt-5">
+        <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Dashboard</span>
+        > Documents</p>
+    </div>
+  </div>
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
+    <div class="">
+      <div class="flex items-center">
+        <div (click)="createDocumentModalOpen= true"
+             class="text-xl text-skin-base text-teal-600 font-bold flex space-x-1 flex items-center cursor-pointer">
+          <span>Create new documents</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-creat-document *ngIf="createDocumentModalOpen"
+                    (close)="createDocumentModalOpen= false"
+                    (success)="createDocumentModalOpen = false">
+
+</app-creat-document>

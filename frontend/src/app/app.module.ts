@@ -58,6 +58,7 @@ import { ScheduelComponent } from './components/manage-school/scheduel/scheduel.
 import { AddDepotComponent } from './components/add-depot/add-depot.component';
 
 import { DocumentComponent } from './components/documents/document/document.component';
+import { CreatScheduelComponent } from './components/manage-school/scheduel/creat-scheduel/creat-scheduel.component';
 
 
 @NgModule({
@@ -110,6 +111,7 @@ import { DocumentComponent } from './components/documents/document/document.comp
     ScheduelComponent,
     AddDepotComponent,
     DocumentComponent,
+    CreatScheduelComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,71 +1,32 @@
-<div
-  class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
-  <div class="">
-    <div class="flex items-center">
-      <span class="text-xl text-skin-base">Scheduel</span>
+<div>
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
+    <div class="">
+      <div class="flex items-center">
+        <span class="text-xl text-skin-base">Subjects</span>
+      </div>
+      <p class="mt-5">
+        <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Dashboard</span>
+        > Subjects</p>
     </div>
-    <p class="mt-5">
-      <span routerLink="/dashboard" class="cursor-pointer font-bold truncate">Dashboard</span>
-      > Levels</p>
   </div>
-</div>
-
-
-<div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600  space-x-5">
-  <p class="text-3xl mb-1 mt-1 ">Send scheduel</p>
-  <div class="flex justify-around w-full">
-    <button [ngClass]=" chooseReciever == 'teacher'? 'bg-skin-sidebar' : 'bg-skin-base'" class="py-1 mb-5 mt-1 cursor-pointer w-full justify-center rounded-md border border-transparent px-24 py-2  font-medium shadow-sm focus:outline-none sm:ml-3 sm:w-auto sm:text-sm "
-            id="teacher" (click)="receiver('teacher')">Teacher</button>
-    <button [ngClass]=" chooseReciever == 'class'? 'bg-skin-sidebar' : 'bg-skin-base'" class="py-1 mb-5 mt-1 cursor-pointer w-full justify-center rounded-md border border-transparent px-24 py-2  font-medium shadow-sm focus:outline-none sm:ml-3 sm:w-auto sm:text-sm "
-            id="student" (click)="receiver('class')">Class</button>
-  </div>
-
-  <form class="bg-skin-base w-full" id="addScheduelForm" (submit)="submit()">
-
-    Title
-    <input required [(ngModel)]="title" type="text" name="title"
-           class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
-    Description
-    <textarea required [(ngModel)]="description" name="content" maxlength="2000"
-              class="block py-1  h-24 px-11 mb-5 mt-1 bg-skin-muted w-full h-60 resize-y">
-                </textarea>
-    Import file
-
-    <button type="button" (click)="chooseFile()" style="background: rgb(136, 136, 136);"
-            class="btn-submit mt-3 block py-1 mb-5 mt-1 w-full lg:w-1/4">Add Work
-    </button>
-    <input type="file" id="fileInput" style="display: none" accept=".doc, .docx" (change)="onFileSelected($event)">
-
-    <div *ngIf="file">
-      <img class="file-upload-image-scheduel" src="assets/wordicon.png" alt="your image"/>
-      {{file.name}}
-
-    </div>
-
-    <div *ngIf="chooseReciever == 'teacher'">
-      <div *ngIf="teachers$ | async as teachers">
-        Teachers
-        <select [(ngModel)]="teacher_id"
-                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacher">
-
-          <option *ngFor="let teacher of teachers"
-                  value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
-        </select>
+  <div
+    class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600 flex justify-between space-x-5">
+    <div class="">
+      <div class="flex items-center">
+        <div (click)="createScheduelModalOpen= true"
+             class="text-xl text-skin-base text-teal-600 font-bold flex space-x-1 flex items-center cursor-pointer">
+          <span>Create new subject</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          </svg>
+        </div>
       </div>
     </div>
-    <div *ngIf="chooseReciever == 'class'">
-      <div *ngIf="classes$ | async as classes">
-        Classes
-        <select [(ngModel)]="class_id"
-                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="classe">
-          <option *ngFor="let classe of classes.content"
-                  value="{{classe.id}}">{{classe.name}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="px-2 w-full flex flex-1 justify-center sm:px-6 bg-skin-base">
-      <input type="submit" form="addScheduelForm" value="Create"
-             class="cursor-pointer btn-submit  w-full justify-center rounded-md border border-transparent px-24 py-2  font-medium shadow-sm focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
-   </div>
-  </form>
+  </div>
 </div>
+<app-creat-scheduel *ngIf="createScheduelModalOpen"
+                    (close)="createScheduelModalOpen= false"
+                    (success)="createScheduelModalOpen = false">
+</app-creat-scheduel>

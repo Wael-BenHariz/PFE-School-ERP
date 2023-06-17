@@ -21,4 +21,6 @@ public class CreatePostCommand {
 
     @NotNull
     private Long realisationId;
+
+    private String file_url;
 }

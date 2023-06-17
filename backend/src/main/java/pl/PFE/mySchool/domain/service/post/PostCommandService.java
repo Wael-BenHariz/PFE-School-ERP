@@ -39,6 +39,7 @@ public class PostCommandService {
         post.setRealisation(realisation);
         post.setTeacher(author);
         post.setTitle(command.getTitle());
+        post.setFile_url(command.getFile_url());
         return postRepository.save(post);
     }
 
@@ -48,6 +49,7 @@ public class PostCommandService {
 
         post.setTitle(command.getTitle() == null ? post.getTitle() : command.getTitle());
         post.setContent(command.getContent() == null ? post.getContent() : command.getContent());
+        post.setFile_url(command.getFile_url() == null ? post.getFile_url() : command.getFile_url());
         post.setEdited(true);
 
         return postRepository.save(post);

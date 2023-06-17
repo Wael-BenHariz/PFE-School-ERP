@@ -57,6 +57,8 @@ import { AddUserComponent } from './components/manage-school/users/add-user/add-
 import { ScheduelComponent } from './components/manage-school/scheduel/scheduel.component';
 import { AddDepotComponent } from './components/add-depot/add-depot.component';
 
+import { DocumentComponent } from './components/documents/document/document.component';
+
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -107,6 +109,7 @@ import { AddDepotComponent } from './components/add-depot/add-depot.component';
     AddUserComponent,
     ScheduelComponent,
     AddDepotComponent,
+    DocumentComponent,
   ],
   imports: [
     BrowserModule,

@@ -61,13 +61,7 @@ export class UserService {
     return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers?size=10&page=${page}&sort=lastName,firstName`)
   }
 
-  getActiveOffices(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/offices?size=10&page=${page}&sort=lastName,firstName`)
-  }
 
-  getActiveDirectors(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/directors?size=10&page=${page}&sort=lastName,firstName`)
-  }
 
   getArchivedStudents(page: number | undefined) {
     return this.http.get<UserPage>(`${environment.apiUrl}/users/students/archived?size=10&page=${page}&sort=lastName,firstName`)
@@ -75,14 +69,6 @@ export class UserService {
 
   getArchivedTeachers(page: number | undefined) {
     return this.http.get<UserPage>(`${environment.apiUrl}/users/teachers/archived?size=10&page=${page}&sort=lastName,firstName`)
-  }
-
-  getArchivedOffices(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/offices/archived?size=10&page=${page}&sort=lastName,firstName`)
-  }
-
-  getArchivedDirectors(page: number | undefined) {
-    return this.http.get<UserPage>(`${environment.apiUrl}/users/directors/archived?size=10&page=${page}&sort=lastName,firstName`)
   }
 
   getAllNotSupervisingActiveTeachers() {
@@ -95,14 +81,6 @@ export class UserService {
 
   getTeacherTokens(page: number | undefined) {
     return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/teachers?size=10&page=${page}&sort=createdAt,desc`)
-  }
-
-  getOfficeTokens(page: number | undefined) {
-    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/offices?size=10&page=${page}&sort=createdAt,desc`)
-  }
-
-  getDirectorTokens(page: number | undefined) {
-    return this.http.get<TokenPage>(`${environment.apiUrl}/users/tokens/directors?size=10&page=${page}&sort=createdAt,desc`)
   }
 
   getLoggedInUserObservable() {

@@ -13,27 +13,27 @@ export class ScheduelService {
   constructor(private http: HttpClient) {
   }
   createScheduleTeacher(title: string | undefined,
-                    desc: string | undefined,
+                        description: string | undefined,
                     file: string | undefined,
-                    teacher: number | undefined
+                        teacher_id: number | undefined
   ) {
     return this.http.post(`${environment.apiUrl}/realisations`, {
       title: title,
-      desc: desc,
+      description: description,
       file: file,
-      teacher: teacher
+      teacher_id: teacher_id
     }, {observe: "response"})
   }
   createScheduleClasse(title: string | undefined,
-                    desc: string | undefined,
+                       description: string | undefined,
                     file: string | undefined,
-                    classe: number | undefined
+                       class_id: number | undefined
   ) {
     return this.http.post(`${environment.apiUrl}/realisations`, {
       title: title,
-      desc: desc,
+      description: description,
       file: file,
-      classe: classe,
+      class_id: class_id,
     }, {observe: "response"})
   }
   geturl(file: File) {

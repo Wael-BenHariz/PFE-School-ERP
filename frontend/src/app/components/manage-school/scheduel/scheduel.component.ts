@@ -19,9 +19,9 @@ export class ScheduelComponent {
 
   chooseReciever = 'teacher'
   title: string = ""
-  desc: string = ""
-  teacher: number | undefined
-  classe: number | undefined
+  description: string = ""
+  teacher_id: number | undefined
+  class_id: number | undefined
   classes$: Observable<ClassPage> = this.classService.getAllActiveClasses()
   teachers$: Observable<User[]> = this.userService.getAllTeachers()
 
@@ -50,13 +50,16 @@ export class ScheduelComponent {
 
   submit() {
     if (this.chooseReciever == 'teacher') {
-      if (this.title === '' || this.desc === '' ) {
+
+      if (this.title === '' || this.description === '' || this.teacher_id === undefined) {
         this.alertService.showAlert('warning', 'Fill all the required fields.')
       } else {
+
         this.scheduelService.geturl(this.file).subscribe(
           (result: any) => {
             this.file_url = result.url
-            this.scheduelService.createScheduleTeacher(this.title, this.desc, this.file_url, this.teacher).subscribe((result) => {
+
+            this.scheduelService.createScheduleTeacher(this.title, this.description, this.file_url, this.teacher_id).subscribe((result) => {
               this.alertService.showAlert('success', 'Activity has been successfully created! Now you can grade students of it.')
             }, error => {
               this.alertService.showAlert('danger', 'Something went wrong during creating a activity. Make sure form is valid')
@@ -69,13 +72,13 @@ export class ScheduelComponent {
 
       }
     } else if (this.chooseReciever == 'class') {
-      if (this.title === '' || this.desc === '' ) {
+      if (this.title === '' || this.description === '' || this.class_id === undefined) {
         this.alertService.showAlert('warning', 'Fill all the required fields.')
       } else {
         this.scheduelService.geturl(this.file).subscribe(
           (result: any) => {
             this.file_url = result.url
-            this.scheduelService.createScheduleClasse(this.title, this.desc, this.file_url, this.classe).subscribe((result) => {
+            this.scheduelService.createScheduleClasse(this.title, this.description, this.file_url, this.class_id).subscribe((result) => {
               this.alertService.showAlert('success', 'Activity has been successfully created! Now you can grade students of it.')
             }, error => {
               this.alertService.showAlert('danger', 'Something went wrong during creating a activity. Make sure form is valid')

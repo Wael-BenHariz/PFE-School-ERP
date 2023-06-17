@@ -26,7 +26,7 @@
     <input required [(ngModel)]="title" type="text" name="title"
            class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4">
     Description
-    <textarea required [(ngModel)]="desc" name="content" maxlength="2000"
+    <textarea required [(ngModel)]="description" name="content" maxlength="2000"
               class="block py-1  h-24 px-11 mb-5 mt-1 bg-skin-muted w-full h-60 resize-y">
                 </textarea>
     Import file
@@ -45,8 +45,8 @@
     <div *ngIf="chooseReciever == 'teacher'">
       <div *ngIf="teachers$ | async as teachers">
         Teachers
-        <select [(ngModel)]="teacher"
-                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacherId">
+        <select [(ngModel)]="teacher_id"
+                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="teacher">
 
           <option *ngFor="let teacher of teachers"
                   value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
@@ -56,8 +56,8 @@
     <div *ngIf="chooseReciever == 'class'">
       <div *ngIf="classes$ | async as classes">
         Classes
-        <select [(ngModel)]="classe"
-                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="classeId">
+        <select [(ngModel)]="class_id"
+                class="block py-1 mb-5 mt-1 bg-skin-muted w-full lg:w-1/4" name="classe">
           <option *ngFor="let classe of classes.content"
                   value="{{classe.id}}">{{classe.name}}</option>
         </select>

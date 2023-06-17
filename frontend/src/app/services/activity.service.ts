@@ -23,13 +23,14 @@ export class ActivityService {
     return this.http.get<ActivityPage>(`${environment.apiUrl}/activities/incoming?size=3&page=${page}&sort=date`)
   }
 
-  createActivity(name: string, description: string, weight: number, date: any, realisationId: number | undefined) {
+  createActivity(name: string, description: string, weight: number, date: any, realisationId: number | undefined,file: string) {
     return this.http.post(`${environment.apiUrl}/activities`, {
       name: name,
       description: description,
       weight: weight,
       date: date,
-      realisationId: realisationId
+      realisationId: realisationId,
+      file_url: file
     }, {observe: "response"})
   }
 

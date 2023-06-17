@@ -28,14 +28,15 @@ public class GradeCommandController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
+    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN","STUDENT"})
     public void createGrade(@Valid @RequestBody CreateGradeCommand command) {
+        System.out.println("yes");
         accessGuard.checkAccessToActivity(command.getActivityId());
         gradeCommandHandler.handle(command);
     }
 
     @PutMapping("/{id}")
-    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN"})
+    @Secured({"TEACHER", "OFFICE", "DIRECTOR", "ADMIN","STUDENT"})
     public void updateGrade(@PathVariable("id") Long id, @Valid @RequestBody UpdateGradeCommand command) {
         command.setGradeId(id);
         gradeCommandHandler.handle(command);

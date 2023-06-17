@@ -29,12 +29,19 @@ export class GradeService {
     return this.http.get<GradePage>(`${environment.apiUrl}/grades/own?size=3&page=${page}&sort=createdAt,desc`)
   }
 
-  updateGrade(activityId: number | undefined, studentId: number | undefined, value: number | undefined, comment: string | undefined) {
+  updateGrade(activityId: number | undefined, studentId: number | undefined, value: number | undefined, comment: string | undefined,file_url:string) {
     return this.http.post(`${environment.apiUrl}/grades`, {
       value: value,
       activityId: activityId,
       studentId: studentId,
-      comment: comment
+      comment: comment,
+      file_url: file_url
     })
+  }
+
+  geturl(file: File) {
+    const formdata: FormData = new FormData();
+    formdata.append('file', file);
+    return this.http.post<string>(`${environment.apiUrl}/firebase/url`, formdata);
   }
 }

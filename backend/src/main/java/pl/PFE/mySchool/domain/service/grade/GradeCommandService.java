@@ -32,11 +32,26 @@ public class GradeCommandService {
 
 
     public Grade create(CreateGradeCommand command) {
+        if(gradeRepository.findByStudentIdAndActivityId(command.getStudentId(),command.getActivityId())!=null){
+            Grade grade=gradeRepository.findByStudentIdAndActivityId(command.getStudentId(),command.getActivityId());
+            if((!command.getComment().equals("") || command.getValue()!=-1) && (command.getFile_url()==null || command.getFile_url().equals("")) ){
+                grade.setComment(command.getComment());
+                grade.setValue(command.getValue());
+                return gradeRepository.save(grade);
+            }else{
+                grade.setFile_url(command.getFile_url());
+                return gradeRepository.save(grade);
+            }
+        }else{
         Optional<Grade> optionalGrade = gradeRepository.findByActivityIdAndStudentId(command.getActivityId(), command.getStudentId());
         Grade grade = optionalGrade.orElseGet(Grade::new);
 
-        grade.setValue(command.getValue());
-        grade.setComment(command.getComment());
+            if((!command.getComment().equals("") || command.getValue()!=-1) && (command.getFile_url()==null || command.getFile_url().equals("")) ){
+                grade.setComment(command.getComment());
+                grade.setValue(command.getValue());
+            }else{
+                grade.setFile_url(command.getFile_url());
+            }
 
         Activity activity = activityRepository.findById(command.getActivityId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
@@ -47,8 +62,9 @@ public class GradeCommandService {
         grade.setActivity(activity);
         grade.setStudent(student);
         grade.setTeacher(teacher);
-
         return gradeRepository.save(grade);
+        }
+
     }
 
     public Grade update(UpdateGradeCommand command) {

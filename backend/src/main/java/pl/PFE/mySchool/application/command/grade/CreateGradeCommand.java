@@ -13,9 +13,8 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 public class CreateGradeCommand {
 
-    @Min(1)
+    @Min(-1)
     @Max(5)
-    @NotNull
     private Integer value;
 
     @NotNull
@@ -26,4 +25,6 @@ public class CreateGradeCommand {
 
     @NotNull
     private Long activityId;
+
+    private String file_url;
 }

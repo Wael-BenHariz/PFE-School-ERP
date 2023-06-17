@@ -7,14 +7,7 @@
     <div (click)="showTeacherTokens()" class="hover:bg-skin-muted p-3 rounded-lg cursor-pointer"
          [ngClass]="userType === 'TEACHER'? 'bg-skin-muted': ''">Teachers
     </div>
-    <div *ngIf="authService.getRole() == 'DIRECTOR' || authService.getRole() == 'ADMIN'" (click)="showOfficeTokens()"
-         class="hover:bg-skin-muted p-3 rounded-lg cursor-pointer"
-         [ngClass]="userType === 'OFFICE'? 'bg-skin-muted': ''">Offices
-    </div>
-    <div *ngIf="authService.getRole() == 'ADMIN'" (click)="showDirectorTokens()"
-         class="hover:bg-skin-muted p-3 rounded-lg cursor-pointer"
-         [ngClass]="userType === 'DIRECTOR'? 'bg-skin-muted': ''">Directors
-    </div>
+
   </div>
   <div *ngIf="codes$ | async as codes" class="mt-3">
     <div *ngIf="codes?.totalPages !== 0; else noTokens" class="overflow-x-auto max-w-[81vw] sm:max-w-full">

@@ -87,12 +87,6 @@
       <div (click)="showTeachers()" class="hover:bg-skin-muted p-3 rounded-lg cursor-pointer"
            [ngClass]="userType === 'TEACHER'? 'bg-skin-muted': ''">Teachers
       </div>
-      <div (click)="showOffices()" class="hover:bg-skin-muted p-3 rounded-lg cursor-pointer"
-           [ngClass]="userType === 'OFFICE'? 'bg-skin-muted': ''">Offices
-      </div>
-      <div (click)="showDirectors()" class="hover:bg-skin-muted p-3 rounded-lg cursor-pointer"
-           [ngClass]="userType === 'DIRECTOR'? 'bg-skin-muted': ''">Directors
-      </div>
     </div>
     <div *ngIf="users$ | async as users; else loading" class="mt-3">
       <div *ngIf="users?.totalPages !== 0; else noUsers" class="overflow-x-auto max-w-[81vw] sm:max-w-full">
@@ -111,7 +105,7 @@
             <th *ngIf="userType == 'STUDENT'" class="px-6 py-3">
               Class
             </th>
-            <th *ngIf="!showArchived && authService.getRole() === 'DIRECTOR' || authService.getRole() === 'ADMIN'"
+            <th *ngIf="!showArchived && authService.getRole() === 'ADMIN'"
                 class="px-6 py-3 text-center">
               Action
             </th>
@@ -131,7 +125,7 @@
             <td *ngIf="userType == 'STUDENT'" class="px-6 py-4">
               {{user.schoolClassName}}
             </td>
-            <td *ngIf="!showArchived && authService.getRole() === 'DIRECTOR' || authService.getRole() === 'ADMIN'"
+            <td *ngIf="!showArchived && authService.getRole() === 'ADMIN'"
                 class="px-6 py-4 text-center flex justify-center space-x-3">
               <span routerLink="/profile/{{user.id}}"
                     class="text-skin-base text-teal-600 font-bold flex space-x-1 flex items-center cursor-pointer">

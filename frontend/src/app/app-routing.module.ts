@@ -22,6 +22,7 @@ import {ManagementGuard} from "./guards/management.guard";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 import {ScheduelComponent} from "./components/manage-school/scheduel/scheduel.component";
+import { DocumentComponent } from './components/documents/document/document.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,14 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthenticationGuard],
     children: [
+      {
+        path: "document",
+        component: DocumentComponent,
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: "document"
+        },
+      },
       {
         path: "profile",
         component: OwnProfileComponent,

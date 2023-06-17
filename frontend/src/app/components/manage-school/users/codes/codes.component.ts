@@ -53,14 +53,7 @@ export class CodesComponent implements OnInit {
         this.codes$ = this.userService.getTeacherTokens(this.pageNumber$.value)
         break
       }
-      case "OFFICE": {
-        this.codes$ = this.userService.getOfficeTokens(this.pageNumber$.value)
-        break
-      }
-      case "DIRECTOR": {
-        this.codes$ = this.userService.getDirectorTokens(this.pageNumber$.value)
-        break
-      }
+
       default: {
         this.codes$ = this.codes$ = this.userService.getStudentTokens(this.pageNumber$.value)
       }
@@ -77,16 +70,8 @@ export class CodesComponent implements OnInit {
     this.getFilteredTokens()
   }
 
-  showOfficeTokens() {
-    this.userType = "OFFICE"
-    this.getFilteredTokens()
-  }
 
-  showDirectorTokens() {
-    this.userType = "DIRECTOR"
-    this.getFilteredTokens()
-  }
-  
+
   previousPage() {
     if (this.pageNumber$.value > 0) {
       this.pageNumber$.next(this.pageNumber$.value - 1)

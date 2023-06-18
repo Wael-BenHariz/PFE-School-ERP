@@ -30,3 +30,46 @@
                     (close)="createScheduelModalOpen= false"
                     (success)="createScheduelModalOpen = false">
 </app-creat-scheduel>
+
+<div *ngIf="scheduel$ | async as scheduel">
+
+  <table class="text-left w-full">
+    <thead class="uppercase">
+    <tr>
+      <th class="px-6 py-3">
+        Title
+      </th>
+      <th class="px-6 py-3 text-center">
+        Description
+      </th>
+      <th class="px-6 py-3 text-center">
+        File
+      </th>
+      <th class="px-6 py-3 text-center">
+        Action
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let sched of scheduel.content">
+      <ng-container *ngIf="sched.archived == false">
+        <td class="px-6 py-4">
+          {{sched.title}}
+        </td>
+        <td class="px-6 py-4 text-xl text-center">
+          {{sched.description}}
+        </td>
+        <td>
+          <img alt="scheduel image " *ngIf="sched.file_url" style="margin-left: 125px ;" class="h-12 w-12 border-none object-cover imgh"
+               src="assets/fileimage.png" (click)="openlink(sched.file_url)">
+          <span *ngIf="!sched.file_url">No work</span>
+        </td>
+        <td class="px-6 py-4 text-center flex justify-center space-x-3">
+          <button (click)="deleteScheduel(sched.id)" class="btn-del">Delete</button>
+        </td>
+      </ng-container>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

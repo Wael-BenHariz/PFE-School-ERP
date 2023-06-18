@@ -1,5 +1,5 @@
-export interface SchedeulPage {
-  content: Schedeul[],
+export interface ScheduelPage {
+  content: Scheduel[],
   totalPages: number,
   last: boolean,
   number: number
@@ -7,7 +7,7 @@ export interface SchedeulPage {
 
 
 export interface Scheduel {
-  ScheduelId: number;
+  id: number;
   title: string;
   file_url: string;
   description:string;

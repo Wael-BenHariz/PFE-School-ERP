@@ -15,6 +15,10 @@ export class ClassService {
     return this.http.get<ClassPage>(`${environment.apiUrl}/classes?sort=level.value,createdAt`)
   }
 
+  getAllClasses() {
+    return this.http.get<ClassPage>(`${environment.apiUrl}/classes`)
+  }
+
   getClassById(id: number | undefined) {
     return this.http.get<Class>(`${environment.apiUrl}/classes/${id}`)
   }

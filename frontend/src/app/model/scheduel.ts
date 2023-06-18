@@ -5,10 +5,11 @@ export interface SchedeulPage {
   number: number
 }
 
-export interface Schedeul {
-  id:number;
+
+export interface Scheduel {
+  ScheduelId: number;
   title: string;
-  description: string;
   file_url: string;
-  archived:boolean;
+  description:string;
+    archived:boolean;
 }

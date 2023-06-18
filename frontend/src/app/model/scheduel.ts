@@ -1,5 +1,5 @@
-export interface SchedeulPage {
-  content: Schedeul[],
+export interface ScheduelPage {
+  content: Scheduel[],
   totalPages: number,
   last: boolean,
   number: number

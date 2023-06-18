@@ -31,3 +31,45 @@
                     (success)="createDocumentModalOpen = false">
 
 </app-creat-document>
+<div *ngIf="documents$ | async as document">
+
+  <table class="text-left w-full">
+    <thead class="uppercase">
+    <tr>
+      <th class="px-6 py-3">
+        Title
+      </th>
+      <th class="px-6 py-3 text-center">
+        Description
+      </th>
+      <th class="px-6 py-3 text-center">
+        File
+      </th>
+      <th class="px-6 py-3 text-center">
+        Action
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let doc of document.content">
+      <ng-container *ngIf="doc.archived == false">
+        <td class="px-6 py-4">
+          {{doc.title}}
+        </td>
+        <td class="px-6 py-4 text-xl text-center">
+          {{doc.description}}
+        </td>
+        <td>
+          <img *ngIf="doc.file_url" style="margin-left: 125px ;" class="h-12 w-12 border-none object-cover imgh"
+               src="assets/fileimage.png" (click)="openlink(doc.file_url)">
+          <span *ngIf="!doc.file_url">No work</span>
+        </td>
+        <td class="px-6 py-4 text-center flex justify-center space-x-3">
+          <button (click)="deleteDocument(doc.id)" class="btn-del">Delete</button>
+        </td>
+      </ng-container>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

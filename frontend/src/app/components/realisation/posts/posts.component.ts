@@ -48,6 +48,11 @@ export class PostsComponent implements OnInit {
     }
   }
 
+  openlink(link:string){
+    window.open(link,'_blank')
+  }
+  
+
   showDeleteModal(postId: number) {
     this.postIdToBeDeleted = postId
     this.deleteModalOpened = true

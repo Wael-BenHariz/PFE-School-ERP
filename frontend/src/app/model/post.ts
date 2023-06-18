@@ -18,4 +18,5 @@ export interface Post {
   createdAt: Date;
   updatedAt: Date;
   edited: boolean;
+  file_url: string;
 }

@@ -25,4 +25,6 @@ public class UpdateActivityCommand {
     private String description;
 
     private LocalDateTime date;
+
+    private String file_url;
 }

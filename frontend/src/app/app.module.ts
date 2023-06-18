@@ -60,6 +60,7 @@ import { AddDepotComponent } from './components/add-depot/add-depot.component';
 import { DocumentComponent } from './components/manage-school/document/document.component';
 import { CreatScheduelComponent } from './components/manage-school/scheduel/creat-scheduel/creat-scheduel.component';
 import { CreatDocumentComponent } from './components/manage-school/document/creat-document/creat-document.component';
+import { ViewScheduelComponent } from './components/view-scheduel/view-scheduel.component';
 
 
 @NgModule({
@@ -114,6 +115,7 @@ import { CreatDocumentComponent } from './components/manage-school/document/crea
     DocumentComponent,
     CreatScheduelComponent,
     CreatDocumentComponent,
+    ViewScheduelComponent,
   ],
   imports: [
     BrowserModule,

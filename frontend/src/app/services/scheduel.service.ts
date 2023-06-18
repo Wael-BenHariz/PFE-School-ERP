@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import { Scheduel } from "../model/scheduel";
+import {Scheduel, ScheduelPage} from "../model/scheduel";
 
 
 @Injectable({
@@ -50,7 +50,12 @@ export class ScheduelService {
     return this.http.get<Scheduel>(`${environment.apiUrl}/scheduel/ClassScheduel/${id}`)
   }
 
-
+  getAllScheduel(){
+    return this.http.get<ScheduelPage>(`${environment.apiUrl}/scheduel/all`)
+  }
+deleteScheduel(id:number){
+  return this.http.delete(`${environment.apiUrl}/scheduel/${id}`)
+}
   geturl(file: File) {
     const formdata: FormData = new FormData();
     formdata.append('file', file);

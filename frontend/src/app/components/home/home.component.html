@@ -109,6 +109,21 @@
             </a>
           </li>
 
+          <li class="my-px">
+            <a *ngIf="authService.getRole() == 'STUDENT' || authService.getRole() == 'TEACHER'  "
+              (click)="hideSidebarIfOverlapping()"
+              routerLink="/viewScheduel"
+              routerLinkActive="bg-skin-muted"
+              [routerLinkActiveOptions]="{exact: true}"
+              class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
+            >
+                <span class="flex items-center justify-center text-lg text-skin-base">
+                  <img src="https://freesvg.org/img/text70.png " class="object-scale-down h-8 w-6"/>
+                </span>
+              <span class="ml-3 ">Scheduel</span>
+            </a>
+          </li>
+
 
           <li class="my-px mt-3">
             <span class="flex font-medium text-sm text-skin-base px-4 mb-2 uppercase">Account</span>

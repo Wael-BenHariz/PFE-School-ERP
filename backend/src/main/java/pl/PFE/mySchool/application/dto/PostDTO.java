@@ -24,6 +24,7 @@ public class PostDTO {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private boolean edited;
+    private String file_url;
 
     public PostDTO(Post post) {
         this.postId = post.getId();
@@ -38,5 +39,6 @@ public class PostDTO {
         this.realisationId = post.getRealisation().getId();
         this.subjectName = post.getRealisation().getSubject().getName();
         this.authorImageUrl = post.getTeacher().getImageUrl();
+        this.file_url=post.getFile_url();
     }
 }

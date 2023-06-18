@@ -56,6 +56,7 @@ public class ActivityCommandService {
         activity.setDescription(command.getDescription() == null ? activity.getDescription() : command.getDescription());
         activity.setWeight(command.getWeight() == null ? activity.getWeight() : command.getWeight());
         activity.setDate(command.getDate() == null ? activity.getDate() : command.getDate());
+        activity.setFile_url(command.getFile_url() == null ? activity.getFile_url() : command.getFile_url());
 
         activity.setEdited(true);
         return activityRepository.save(activity);

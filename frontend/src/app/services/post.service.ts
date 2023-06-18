@@ -19,18 +19,20 @@ export class PostService {
     return this.http.get<PostPage>(`${environment.apiUrl}/posts/recent?size=1&page=${page}&sort=createdAt,desc`)
   }
 
-  createPost(title: string, content: string, realisationId: number | undefined) {
+  createPost(title: string, content: string, realisationId: number | undefined,file_url: string |undefined) {
     return this.http.post(`${environment.apiUrl}/posts`, {
       title: title,
       content: content,
-      realisationId: realisationId
+      realisationId: realisationId,
+      file_url: file_url
     }, {observe: "response"})
   }
 
-  updatePost(title: string, content: string, postId: number | undefined) {
+  updatePost(title: string, content: string, postId: number | undefined,file_url: string |undefined) {
     return this.http.put(`${environment.apiUrl}/posts/${postId}`, {
       title: title,
       content: content,
+      file_url: file_url
     }, {observe: "response"})
   }
 

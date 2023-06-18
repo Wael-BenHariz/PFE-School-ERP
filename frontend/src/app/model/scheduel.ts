@@ -1,3 +1,4 @@
+
 export interface ScheduelPage {
   content: Scheduel[],
   totalPages: number,
@@ -7,7 +8,7 @@ export interface ScheduelPage {
 
 
 export interface Scheduel {
-  id: number;
+  ScheduelId: number;
   title: string;
   file_url: string;
   description:string;

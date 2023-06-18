@@ -22,8 +22,7 @@
                 </div>
               </div>
               <h3 class="text-xl font-semibold text-skin-base">{{post.title}}</h3>
-              <p class="mt-6 text-base text-skin-base text-justify">{{post.content}}</p>
-            </div>
+              <p class="mt-6 text-base text-skin-base text-justify">{{post.content}}</p>  </div>
           </div>
           <div
             *ngIf="authService.getRole() == 'TEACHER'  || authService.getRole() == 'ADMIN'"
@@ -45,6 +44,8 @@
             </div>
           </div>
         </div>
+        <img style="margin-left: 45%;" *ngIf="post.file_url"  class="h-12 w-12 border-none object-cover imgh" src="assets/fileimage.png" (click)="openlink(post.file_url)">
+    
         <hr class="bg-skin-base">
       </div>
     </div>

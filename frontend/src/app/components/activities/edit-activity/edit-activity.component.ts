@@ -2,6 +2,7 @@ import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@ang
 import {AlertService} from "../../../services/alert.service";
 import {Activity} from "../../../model/activity";
 import {ActivityService} from "../../../services/activity.service";
+import { GradeService } from 'src/app/services/grade.service';
 
 @Component({
   selector: 'app-edit-activity',
@@ -14,6 +15,9 @@ export class EditActivityComponent implements OnInit {
   description: string = ""
   weight: number = 1
   date: any | undefined
+  file!: File
+  file_name:any
+  file_url:any
   //end data
 
 
@@ -26,7 +30,7 @@ export class EditActivityComponent implements OnInit {
   @Output() success: EventEmitter<any> = new EventEmitter()
 
   constructor(private activityService: ActivityService,
-              private alertService: AlertService) {
+              private alertService: AlertService,private gradeservice: GradeService) {
   }
 
   ngOnInit(): void {
@@ -42,20 +46,49 @@ export class EditActivityComponent implements OnInit {
     }
   }
 
+  chooseFile() {
+    document.getElementById('fileInput')?.click();
+  }
+
+  onFileSelected(event: any | null) {
+    if (event.target.files[0]) {
+      this.file=event.target.files[0]
+      this.file_name=this.file.name
+    }
+  }
+
   submit() {
     if (this.name === '' || this.weight < 1) {
       this.alertService.showAlert('warning', 'Fill all the required fields.')
       return
     }
-
     this.loading = true
-    this.activityService.updateActivity(this.name, this.description, this.weight, new Date(this.date), this.activity?.activityId).subscribe((result) => {
-      this.alertService.showAlert('success', 'Activity has been successfully updated!')
-      this.success.emit()
-    }, error => {
-      this.alertService.showAlert('danger', 'Something went wrong during updating a activity. Try again later.')
-      this.loading = false
-    })
+    if(this.file){
+      this.gradeservice.geturl(this.file).subscribe(
+        (result: any) => {
+          this.activityService.updateActivity(this.name, this.description, this.weight, new Date(this.date), this.activity?.activityId,result.url).subscribe((result) => {
+            this.alertService.showAlert('success', 'Activity has been successfully updated!')
+            this.success.emit()
+          }, error => {
+            this.alertService.showAlert('danger', 'Something went wrong during updating a activity. Try again later.')
+            this.loading = false
+          })
+        },
+        (error) => {
+          console.error(error); // Handle any errors
+        }
+      );
+    }else{
+      this.activityService.updateActivity(this.name, this.description, this.weight, new Date(this.date), this.activity?.activityId,undefined).subscribe((result) => {
+        this.alertService.showAlert('success', 'Activity has been successfully updated!')
+        this.success.emit()
+      }, error => {
+        this.alertService.showAlert('danger', 'Something went wrong during updating a activity. Try again later.')
+        this.loading = false
+      })
+    }
+
+    
   }
 
   closeModal() {

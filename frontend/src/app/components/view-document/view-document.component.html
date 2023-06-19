@@ -1,0 +1,39 @@
+<div *ngIf="authService.getRole() == 'STUDENT'" class="mb-5">
+  <div class="md:flex w-full space-x-0 md:space-x-5">
+    <div
+      class="bg-skin-base rounded-lg min-h-60 p-5 md:w-1/2 md:border-r-0 border-r-4 border-l-4 border-teal-600 mb-5 md:mb-0">
+      <span class="text-lg underline underline-offset-8">Documents:</span>
+      <div *ngIf="document$ | async as documents; else loading">
+        <div *ngIf="documents.content.length > 0 ">
+          <div class="2xl:flex 2xl:space-x-5 mt-5 space-y-3 2xl:space-y-0">
+            <ng-container *ngFor="let document of documents.content"
+           >
+            <div *ngIf="!document.archived"  class="flex flex-col text-center shadow-xl bg-skin-muted rounded-xl p-3 w-full 2xl:w-1/3">
+              <span class="font-bold text-xl">Title: {{document.title}}</span>
+              <span>{{document.createdAt | date:"short"}}</span>
+              <span><img class="h-20 w-20 ml-12 border-none object-cover imgh" src="assets/fileimage.png" (click)="openlink(document.file_url)"/> </span>
+               <span>{{document.description}}</span>
+
+            </div>
+          </ng-container>
+          </div>
+
+        </div>
+        <div *ngIf="documents.content.length === 0" class="p-3">
+          There are no document.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

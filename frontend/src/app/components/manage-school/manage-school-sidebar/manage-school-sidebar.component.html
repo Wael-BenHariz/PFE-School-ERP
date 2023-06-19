@@ -61,6 +61,17 @@
   <li class="my-px">
     <a
       (click)="hideSidebarIfOverlapping()"
+      routerLink="/document"
+      routerLinkActive="bg-skin-muted"
+      [routerLinkActiveOptions]="{exact: true}"
+      class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"
+    >
+      <span class="ml-3">Documents</span>
+    </a>
+  </li>
+  <li class="my-px">
+    <a
+      (click)="hideSidebarIfOverlapping()"
       routerLink="/scheduel"
       routerLinkActive="bg-skin-muted"
       [routerLinkActiveOptions]="{exact: true}"

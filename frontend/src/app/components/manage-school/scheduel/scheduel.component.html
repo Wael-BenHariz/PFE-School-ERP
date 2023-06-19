@@ -16,7 +16,7 @@
       <div class="flex items-center">
         <div (click)="createScheduelModalOpen= true"
              class="text-xl text-skin-base text-teal-600 font-bold flex space-x-1 flex items-center cursor-pointer">
-          <span>Create new subject</span>
+          <span>Create new scheduel</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
@@ -30,6 +30,8 @@
                     (close)="createScheduelModalOpen= false"
                     (success)="createScheduelModalOpen = false">
 </app-creat-scheduel>
+
+<div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
 
 <div *ngIf="scheduel$ | async as scheduel">
 
@@ -62,14 +64,16 @@
         <td>
           <img alt="scheduel image " *ngIf="sched.file_url" style="margin-left: 125px ;" class="h-12 w-12 border-none object-cover imgh"
                src="assets/fileimage.png" (click)="openlink(sched.file_url)">
-          <span *ngIf="!sched.file_url">No work</span>
+          <span *ngIf="!sched.file_url">No file</span>
         </td>
         <td class="px-6 py-4 text-center flex justify-center space-x-3">
           <button (click)="deleteScheduel(sched.id)" class="btn-del">Delete</button>
         </td>
       </ng-container>
 
+
     </tr>
     </tbody>
   </table>
+</div>
 </div>

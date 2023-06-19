@@ -11,4 +11,5 @@ export interface Document {
   description: string;
   file_url: string;
   archived:boolean;
+  createdAt:Date
 }

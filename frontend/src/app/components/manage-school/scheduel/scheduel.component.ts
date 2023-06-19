@@ -8,6 +8,10 @@ import {ScheduelPage} from "../../../model/scheduel";
   templateUrl: './scheduel.component.html'
 })
 export class ScheduelComponent {
+  //Filter
+  showArchived: boolean = false
+  //end filter
+
   //Pagination
   pageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
   //end pagination
@@ -20,10 +24,21 @@ export class ScheduelComponent {
   constructor(private scheduelService: ScheduelService) {
   }
 
+  getFilteredScheduels() {
+    if (!this.showArchived) {
+      this.scheduel$ = this.scheduelService.getAllScheduel()
+  }
+  }
+
+
   openlink(link: string) {
     window.open(link, '_blank')
   }
   deleteScheduel(id:number){
-      this.scheduelService.deleteScheduel(id)
+      console.log(id)
+      this.scheduelService.deleteScheduel(id).subscribe((result) => {
+        this.getFilteredScheduels()
+      }, error => {
+      })
   }
 }

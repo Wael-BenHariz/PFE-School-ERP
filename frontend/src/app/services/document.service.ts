@@ -28,6 +28,7 @@ export class DocumentService {
     }, {observe: "response"})
   }
 deleteDocument(documentId:number){
+  console.log(documentId)
   return this.http.delete(`${environment.apiUrl}/documents/${documentId}`)
 }
 

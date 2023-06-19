@@ -31,6 +31,8 @@
                     (success)="createDocumentModalOpen = false">
 
 </app-creat-document>
+
+<div class="bg-skin-base p-5 m-3 rounded-md shadow border-r-4 border-l-4 border-teal-600">
 <div *ngIf="documents$ | async as document">
 
   <table class="text-left w-full">
@@ -72,4 +74,5 @@
     </tr>
     </tbody>
   </table>
+</div>
 </div>

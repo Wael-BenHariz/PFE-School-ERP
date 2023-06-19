@@ -8,7 +8,7 @@ export interface ScheduelPage {
 
 
 export interface Scheduel {
-  ScheduelId: number;
+  id: number;
   title: string;
   file_url: string;
   description:string;

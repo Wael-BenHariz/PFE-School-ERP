@@ -97,7 +97,7 @@
           <li class="my-px">
             <a *ngIf="authService.getRole() == 'STUDENT'"
               (click)="hideSidebarIfOverlapping()"
-              routerLink="/document"
+              routerLink="/viewDocument"
               routerLinkActive="bg-skin-muted"
               [routerLinkActiveOptions]="{exact: true}"
               class="flex flex-row items-center h-10 px-3 rounded-lg text-skin-base hover:bg-skin-muted"

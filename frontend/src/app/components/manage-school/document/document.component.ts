@@ -9,6 +9,10 @@ import {DocumentPage} from "../../../model/document";
 })
 export class DocumentComponent {
 
+  //Filter
+  showArchived: boolean = false
+  //end filter
+
   //Pagination
   pageNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
   //end pagination
@@ -25,10 +29,18 @@ export class DocumentComponent {
     window.open(link, '_blank')
   }
 
+  getFilteredDocuments() {
+    if (!this.showArchived) {
+      this.documents$ = this.documentService.getAllDocument()
+  }
+  }
 
 
   deleteDocument(id:number) {
-      this.documentService.deleteDocument(id)
+      this.documentService.deleteDocument(id).subscribe((result) => {
+        this.getFilteredDocuments()
+      }, error => {
+      })
 
     }
   }

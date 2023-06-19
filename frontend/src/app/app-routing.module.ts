@@ -24,6 +24,7 @@ import {UserProfileComponent} from "./components/user-profile/user-profile.compo
 import {ScheduelComponent} from "./components/manage-school/scheduel/scheduel.component";
 import {DocumentComponent} from "./components/manage-school/document/document.component";
 import { ViewScheduelComponent } from './components/view-scheduel/view-scheduel.component';
+import { ViewDocumentComponent } from './components/view-document/view-document.component';
 
 const routes: Routes = [
   {
@@ -121,9 +122,17 @@ const routes: Routes = [
       {
         path: "document",
         component: DocumentComponent,
-        canActivate: [AuthenticationGuard],
+        canActivate: [AuthenticationGuard,ManagementGuard],
         data: {
           title: "Document"
+        },
+      },
+      {
+        path: "viewDocument",
+        component: ViewDocumentComponent,
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: "viewDocument"
         },
       },
       {
